@@ -1,16 +1,16 @@
 @font-face {
     font-family: 'Livvic-Bold';
-    src: url('/public/assets/fonts/Livvic-Bold.ttf') format('truetype');
+    src: url('../fonts/Livvic-Bold.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Overpass-Light';
-    src: url('/public/assets/fonts/Overpass-Light.ttf') format('truetype');
+    src: url('../fonts/Overpass-Light.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Overpass-Bold';
-    src: url('/public/assets/fonts/Overpass-Bold.ttf') format('truetype');
+    src: url('../fonts/Overpass-Bold.ttf') format('truetype');
 }
 
 * {
@@ -253,6 +253,7 @@ footer {
     top: 0;
     left: 0;
 }
+
 @media (max-width: 768px) {
     .container {
         padding: 1rem;
