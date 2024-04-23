@@ -15,6 +15,48 @@
     <title>MIRTE - Educational Robot</title>
     
     <link rel="stylesheet" href="/public/assets/css/styles.css">
+    <style>
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .arrow-left {
+            left: 0;
+        }
+
+        .arrow-right {
+            right: 0;
+        }
+
+        .robot-image {
+            max-width: 30%;
+            height: auto;
+        }
+
+        a.my-button {
+    background-color: #cee6ed!important;
+    border: none;
+    border-radius: 6px;
+    color: #000!important;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 20px;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+    </style>
 </head>
 <body class="h-100">
     <header>
@@ -50,21 +92,21 @@
             </nav>
         </div>
     </header>
-    
-    <main class="home-content">
-        <div class="content-wrapper">
-            <section class="text-content">
-                <h1 class="text-primary">MIRTE</h1>
-                <p class="text-secondary">A low-cost fully open source educational robot track from primary school up to university level. Using a standard set of off-the-shelf components one can gradually learn about multiple engineering disciplines (e.g., mechanical, software, and electrical).</p>
-                <button class="my-button">Check out all <span class="mirte">MIRTE</span> robots!</button>
-            </section>
-            <div class="images-content">
-                <img src="/public/assets/images/mirte_drawing.png" alt="MIRTE Drawing" class="mirte-drawing">
-                <img src="/public/assets/images/lijn.png" alt="Decorative Background" class="background-image">
-            </div>
-        </div>
+
+    <main class="content">
+        <section class="container">
+            <img class="robot-image" src="/public/assets/images/mirte_pioneer.png" alt="MIRTE Pioneer">
+
+            <h1 class="text-primary"><span class="mirte">MIRTE</span> Pioneer</h1>
+            <p class="text-secondary">Explore all robotic possibilities. By adding a computer one can use even more sensors (camera, but even lidar) and a gripper. Apart from programming in blocks and Python, one can also use all possibilites of Robot Operating System (ROS).</p>
+
+            <a href="purchase_pioneer.html" class="my-button">Check out <span class="mirte">MIRTE</span> Pioneer</a>
+        </section>
+
+        <button class="arrow arrow-left">&lt;</button>
+        <button class="arrow arrow-right">&gt;</button>
     </main>
-    
+
     <footer class="footer">
         <div class="footer-content">
             <p>
@@ -84,5 +126,22 @@
             </div>
         </div>
     </footer>
+    <script>
+        const arrows = document.querySelectorAll('.arrow');
+        const pages = ['Pioneer', 'Light', 'Basic'];
+        let currentPageIndex = 0;
+
+        arrows.forEach(arrow => {
+            arrow.addEventListener('click', () => {
+                if (arrow.classList.contains('arrow-left')) {
+                    currentPageIndex = (currentPageIndex - 1 + pages.length) % pages.length;
+                } else {
+                    currentPageIndex = (currentPageIndex + 1) % pages.length;
+                }
+                const nextPage = pages[currentPageIndex];
+                window.location.href = `/mirte_${nextPage.toLowerCase()}.html`; // Updated file names
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="MIRTE - Educational Robot" />
+    <meta name="keywords" content="MIRTE, educational, robot, open source" />
+    <meta name="author" content="Stijn Heemskerk" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="icon" href="/public/assets/favicons/favicon.png" />
+    <title>MIRTE - Educational Robot</title>
+
+    <link rel="stylesheet" href="/public/assets/css/styles.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      a,
+      button {
+        font-family: "Overpass-Light", sans-serif;
+      }
+
+      .h1,
+      .h2,
+      .h3,
+      .h4,
+      .h5,
+      .h6,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Livvic-Bold", sans-serif;
+      }
+
+      .header {
+        background-color: #9db7be;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+      }
+
+      .logo {
+        font-family: "Livvic-Bold", sans-serif;
+        font-size: 2rem;
+        color: #000;
+        text-decoration: none;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+      }
+
+      nav a {
+        font-family: "Overpass-Bold", sans-serif;
+        color: #000;
+        text-decoration: none;
+        font-size: 1rem;
+      }
+
+      .main-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .content-wrapper1 {
+        width: 100%;
+        max-width: 800px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        position: relative;
+      }
+
+      .text-content {
+        max-width: 100%;
+        margin-left: auto;
+        position: relative;
+        z-index: 2;
+        text-align: center;
+      }
+
+      .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #f5f5f5;
+        padding: 1rem;
+        text-align: center;
+        z-index: 2;
+      }
+
+      .footer-nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        gap: 2rem;
+      }
+
+      .footer-link,
+      .tud-link {
+        color: #000;
+        text-decoration: none;
+      }
+
+      .tud-link {
+        text-decoration: underline;
+      }
+
+      .tud-link:hover {
+        text-decoration-color: black;
+        text-decoration-thickness: 2px;
+      }
+
+      .text-primary {
+        color: #9db7be;
+      }
+
+      .text-secondary {
+        color: #a6a6a6;
+      }
+
+      .text-tertiary {
+        color: #ebebeb;
+      }
+
+      .purchase-form-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 100%;
+        overflow: hidden;
+        position: relative;
+        height: auto;
+        margin-bottom: 10vh;
+        margin-top: 1vh;
+      }
+
+      .purchase-form {
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 400px;
+        animation: slideIn 0.5s ease forwards;
+      }
+
+      .purchase-form input[type="text"],
+      .purchase-form input[type="email"],
+      .purchase-form select {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .purchase-form input[type="submit"] {
+        background-color: #cee6ed;
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+      }
+
+      .modal-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+      }
+
+      .modal h2 {
+        margin-bottom: 10px;
+        color: #009688;
+      }
+
+      .modal p {
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .modal button {
+        background-color: #009688; 
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .modal button:hover {
+        background-color: #00796b;
+      }
+
+      .pay-now-btn {
+        background-color: #9db7be;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .pay-now-btn:hover {
+        background-color: #cee6ed;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+        <div class="header-container">
+            <h1><a href="index.html" class="logo">MIRTE</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-item active">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-item dropdown-btn">Robots &#9660;</a>
+                        <div class="dropdown-content">
+                            <a href="mirte_light.html"><span class="mirte">MIRTE</span> Light</a>
+                            <a href="mirte_basic.html"><span class="mirte">MIRTE</span> Basic</a>
+                            <a href="mirte_pioneer.html"><span class="mirte">MIRTE</span> Pioneer</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-item dropdown-btn">Getting Started &#9660;</a>
+                        <div class="dropdown-content">
+                            <a href="iammirte.html">IamMirte</a>
+                            <a href="about-us.html">About Us</a>
+                            <a href="https://workshops.mirte.org/nl/" target="_blank" rel="noopener noreferrer">Workshops (NL)</a>
+                            <a href="https://docs.mirte.org" target="_blank">Documentation</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-item dropdown-btn">Contribute &#9660;</a>
+                        <div class="dropdown-content">
+                            <a href="https://github.com/mirte-robot" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main-content">
+      <div class="content-wrapper1">
+        <section class="text-content1">
+          <h1 class="text-primary">Purchase MIRTE Basic</h1>
+          <div class="purchase-form-container">
+            <div class="purchase-form">
+              <img
+                src="/public/assets/images/mirte_basic.png"
+                alt="MIRTE Basic"
+                style="width: 100%; border-radius: 10px; margin-bottom: 20px"
+              />
+              <form id="payment-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required />
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required />
+
+                <label for="payment-method">Payment Method:</label>
+                <select id="payment-method" name="payment-method">
+                  <option value="credit-card">Credit Card</option>
+                  <option value="ideal">iDeal</option>
+                  <option value="paypal">PayPal</option>
+                </select>
+
+                <div id="credit-card-section">
+                  <label for="card-number">Card Number:</label>
+                  <input
+                    type="text"
+                    id="card-number"
+                    name="card-number"
+                    required
+                  />
+
+                  <label for="expiry">Expiry Date:</label>
+                  <input
+                    type="text"
+                    id="expiry"
+                    name="expiry"
+                    placeholder="MM/YY"
+                    required
+                  />
+
+                  <label for="cvv">CVV:</label>
+                  <input type="text" id="cvv" name="cvv" required />
+                </div>
+
+                <div id="ideal-section" style="display: none">
+                  <label for="bank">Select Bank:</label>
+                  <select id="bank" name="bank">
+                    <option value="ABN">ABN AMRO</option>
+                    <option value="ING">ING</option>
+                    <option value="RABO">Rabobank</option>
+                    <option value="SNS">SNS Bank</option>
+                    <option value="RBS">RBS</option>
+
+                  </select>
+                </div>
+
+                <div id="paypal-section" style="display: none">
+                  <label for="paypal-email">PayPal Email:</label>
+                  <input
+                    type="email"
+                    id="paypal-email"
+                    name="paypal-email"
+                    required
+                  />
+                </div>
+
+                <label for="price">Price:</label>
+                <input
+                  type="text"
+                  id="price"
+                  name="price"
+                  value="€499"
+                  readonly
+                />
+
+                <button class="pay-now-btn" onclick="redirectToSuccessPage()">
+                  Pay Now
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+          <p>
+              <a href="privacy.html" class="footer-link">Privacy</a> |
+              <a href="disclaimer.html" class="footer-link">Disclaimer</a>
+          </p>
+          <p>
+              <span class="mirte">MIRTE</span> is being developed by <a href="https://tudelftroboticsinstitute.nl" class="tud-link" target="_blank" rel="noopener noreferrer">TU Delft Robotics Institute</a>.
+          </p>
+          <p> Stichting IamMirte – Julianalaan 67, 2528 BC Delft – KVK: 90828658 – RSIN: 865467055</p>
+          <div class="language-selector">
+              <label for="language-selector">Language:</label>
+              <select id="language-selector">
+                  <option value="en">English</option>
+                  <option value="nl">Dutch</option>
+              </select>
+          </div>
+      </div>
+  </footer>
+
+    <div id="success-modal" class="modal">
+      <div class="modal-content">
+        <h2>Payment Successful!</h2>
+        <p>Redirecting to success page...</p>
+        <button onclick="window.location.href='success.html';">Continue</button>
+      </div>
+    </div>
+
+    <script>
+      function simulatePaymentAndShowModal() {
+        setTimeout(function () {
+          document.getElementById("success-modal").style.display = "block";
+        }, 15000);
+      }
+
+      function handleFormSubmission(event) {
+        event.preventDefault(); 
+        var selectedPaymentMethod =
+          document.getElementById("payment-method").value;
+
+        if (
+          selectedPaymentMethod === "ideal" ||
+          selectedPaymentMethod === "paypal"
+        ) {
+          simulatePaymentAndShowModal();
+        } else {
+          alert("Credit Card payment processing not implemented.");
+        }
+      }
+
+      function handlePaymentMethodChange() {
+        var selectedPaymentMethod =
+          document.getElementById("payment-method").value;
+
+        document.getElementById("credit-card-section").style.display = "none";
+        document.getElementById("ideal-section").style.display = "none";
+        document.getElementById("paypal-section").style.display = "none";
+
+        if (selectedPaymentMethod === "credit-card") {
+          document.getElementById("credit-card-section").style.display =
+            "block";
+        } else if (selectedPaymentMethod === "ideal") {
+          document.getElementById("ideal-section").style.display = "block";
+        } else if (selectedPaymentMethod === "paypal") {
+          document.getElementById("paypal-section").style.display = "block";
+        }
+      }
+
+      document
+        .getElementById("payment-method")
+        .addEventListener("change", handlePaymentMethodChange);
+
+      function handlePayNowButtonClick(event) {
+        handleFormSubmission(event); 
+      }
+
+      document
+        .getElementById("payment-form")
+        .addEventListener("submit", handlePayNowButtonClick);
+
+      handlePaymentMethodChange();
+
+      function redirectToSuccessPage() {
+        window.location.href = "success.html";
+      }
+    </script>
+  </body>
+</html>
