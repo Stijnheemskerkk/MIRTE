@@ -39,3 +39,4 @@ Een uitdaging van dit project is de wens om het te ontwikkelen in Vue.js, met da
 ### Materialen
 
 Hoewel er al een website is met basisinformatie (www.iammirte.org), is het doel om deze te vervangen. De huidige website is echter gebouwd met WordPress en is daarom niet geschikt als startpunt voor dit project.
+=======
