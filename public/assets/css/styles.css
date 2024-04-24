@@ -19,11 +19,31 @@
     box-sizing: border-box;
 }
 
-body, h1, h2, h3, h4, h5, h6, p, a, button {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+button {
     font-family: 'Overpass-Light', sans-serif;
 }
 
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Livvic-Bold', sans-serif;
 }
 
@@ -82,7 +102,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, button {
 
 
 body {
-    background-color: #ebebeb!important;
+    background-color: #ebebeb !important;
 }
 
 header {
@@ -156,13 +176,16 @@ footer {
 }
 
 
-.footer-link, .tud-link {
+.footer-link,
+.tud-link {
     color: #000;
     text-decoration: none;
 }
+
 .tud-link {
     text-decoration: underline;
 }
+
 .tud-link:hover {
     text-decoration-color: black;
     text-decoration-thickness: 2px;
@@ -173,7 +196,7 @@ footer {
 }
 
 .background-primary {
-    background-color: #9db7be!important;
+    background-color: #9db7be !important;
 }
 
 .text-secondary {
@@ -181,7 +204,7 @@ footer {
 }
 
 .background-secondary {
-    background-color: #a6a6a6!important;
+    background-color: #a6a6a6 !important;
 }
 
 .text-tertiary {
@@ -189,15 +212,16 @@ footer {
 }
 
 .background-tertiary {
-    background-color: #ebebeb!important;
+    background-color: #ebebeb !important;
 }
 
 .my-button {
-    background-color: #cee6ed!important;
-    border-color: #cee6ed!important;
-    color: #000!important;
+    background-color: #cee6ed !important;
+    border-color: #cee6ed !important;
+    color: #000 !important;
     border-radius: 6px;
 }
+
 .mirte {
     font-family: 'Livvic-Bold', sans-serif;
     font-weight: bold;
@@ -259,7 +283,8 @@ footer {
         padding: 1rem;
     }
 
-    header, footer {
+    header,
+    footer {
         padding: 0.5rem;
     }
 
@@ -272,7 +297,7 @@ footer {
         font-size: 18px;
         padding: 10px;
     }
-    
+
     .header-container {
         flex-direction: column;
         text-align: center;
@@ -281,11 +306,12 @@ footer {
     .header-container h1 {
         margin-bottom: 1rem;
     }
-    
+
     .footer-nav ul {
         flex-direction: column;
         gap: 0.5rem;
     }
+
     nav ul {
         flex-direction: column;
         gap: 0.5rem;
@@ -297,13 +323,15 @@ footer {
         flex-direction: column;
     }
 
-    .text-content, .images-content {
+    .text-content,
+    .images-content {
         position: static;
         max-width: 100%;
         text-align: center;
     }
 
-    .background-image, .mirte-drawing {
+    .background-image,
+    .mirte-drawing {
         max-width: 100%;
     }
 
@@ -311,4 +339,3 @@ footer {
         margin-top: 1rem;
     }
 }
-

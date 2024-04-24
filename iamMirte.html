@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,8 +14,9 @@
 
     <link rel="icon" href="public/assets/favicons/favicon.png">
     <title>MIRTE - Educational Robot</title>
-    
+
     <link rel="stylesheet" href="public/assets/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.min.js"></script>
     <style>
         .text-content {
             text-align: center;
@@ -25,86 +27,172 @@
             text-decoration: underline;
             color: #000;
         }
+
         .text-secondary {
             color: #000;
             font-weight: 300;
         }
+
+        .footer #language-selector {
+            font-size: 1em;
+            border-radius: 2px;
+            position: absolute;
+            bottom: 8px;
+            right: 0;
+            border: black 1px solid;
+            color: rgb(89, 89, 89)
+        }
+
+        .select-container {
+            position: absolute;
+            bottom: 20px;
+            right: 0;
+        }
+
+        .select-container select {
+            font-size: 1em;
+            border-radius: 5px;
+        }
     </style>
 </head>
+
 <body class="h-100">
-    <header>
-        <div class="header-container">
-            <h1><a href="index.html" class="logo">MIRTE</a></h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html" class="nav-item active">Home</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-item dropdown-btn">Robots &#9660;</a>
-                        <div class="dropdown-content">
-                            <a href="mirte_light.html"><span class="mirte">MIRTE</span> Light</a>
-                            <a href="mirte_basic.html"><span class="mirte">MIRTE</span> Basic</a>
-                            <a href="mirte_pioneer.html"><span class="mirte">MIRTE</span> Pioneer</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-item dropdown-btn">Getting Started &#9660;</a>
-                        <div class="dropdown-content">
-                            <a href="iammirte.html">IamMirte</a>
-                            <a href="about-us.html">About Us</a>
-                            <a href="https://workshops.mirte.org/nl/" target="_blank" rel="noopener noreferrer">Workshops (NL)</a>
-                            <a href="https://docs.mirte.org" target="_blank">Documentation</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-item dropdown-btn">Contribute &#9660;</a>
-                        <div class="dropdown-content">
-                            <a href="https://github.com/mirte-robot" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main class="content">
-        <div class="content-wrapper">
-            <section class="text-content" style="text-align: center;">
-                <h1 class="text-primary">IAm Mirte</h1>
-                <p class="text-secondary">
-                    The affordable and modular educational robot. Mirte is a robot developed for education. Robotics, due to its multidisciplinary nature, is a good entry point for teaching STEM education. That's why many robotics kits have already been developed. So why another one? We want to make robotics accessible to everyone, with affordability being one of the key principles. It also had to be a robot that you can continue to benefit from. That's why Mirte is designed to remain challenging and expandable from elementary school to university. Step by step to the next level in each discipline: hardware, electrical engineering, and software. Everything is in layers and the difficulty level is easy to build up.
-                    <br><br>
-                    Read more about it in the <a href="https://iammirte.org/wp-content/uploads/2023/10/Mirte_iamMirte_presentatie.pdf" target="_blank" rel="noopener noreferrer">downloadable brochure</a>.
-                    <br><br>
-                    IamMirte makes Mirte even more inclusive. We do this by covering the entire chain with social enterprises. We're not there yet, but we've started with the social enterprises Printplezier, iamIT, and Fier fietskoeriers. We do this in close collaboration with TU Delft, which developed Mirte and supports us in this process.
-                </p>
-                <p class="text-secondary">For questions and/or comments, you can always contact us at <a href="mailto:info@iammirte.org">info@iammirte.org</a>.</p>
-            </section>
-            <div class="images-content">
-                <img src="public/assets/images/mirte_drawing.png" alt="MIRTE Drawing" class="mirte-drawing">
-                <img src="public/assets/images/lijn.png" alt="Decorative Background" class="background-image">
+    <div id="app">
+        <header>
+            <div class="header-container">
+                <h1><a href="index.html" class="logo">MIRTE</a></h1>
+                <nav>
+                    <ul>
+                        <li><a href="index.html" class="nav-item active"
+                                v-html="translations[currentLanguage].home"></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-item dropdown-btn"
+                                v-html="translations[currentLanguage].robots + ' &#9660;'"></a>
+                            <div class="dropdown-content">
+                                <a href="mirte_light.html"><span class="mirte">MIRTE</span> Light</a>
+                                <a href="mirte_basic.html"><span class="mirte">MIRTE</span> Basic</a>
+                                <a href="mirte_pioneer.html"><span class="mirte">MIRTE</span> Pioneer</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-item dropdown-btn"
+                                v-html="translations[currentLanguage].gettingStarted + ' &#9660;'"></a>
+                            <div class="dropdown-content">
+                                <a href="iammirte.html" v-html="translations[currentLanguage].iammirte"></a>
+                                <a href="about-us.html" v-html="translations[currentLanguage].aboutUs"></a>
+                                <a href="https://workshops.mirte.org/nl/"
+                                    v-html="translations[currentLanguage].workshops"></a>
+                                <a href="https://docs.mirte.org" target="_blank"
+                                    v-html="translations[currentLanguage].documentation"></a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-item dropdown-btn"
+                                v-html="translations[currentLanguage].contribute + ' &#9660;'"></a>
+                            <div class="dropdown-content">
+                                <a href="https://github.com/mirte-robot" target="_blank"
+                                    rel="noopener noreferrer">GitHub</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-        </div>
-    </main>
-    
+        </header>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <p>
-                <a href="privacy.html" class="footer-link">Privacy</a> |
-                <a href="disclaimer.html" class="footer-link">Disclaimer</a>
-            </p>
-            <p>
-                <span class="mirte">MIRTE</span> is being developed by <a href="https://tudelftroboticsinstitute.nl" class="tud-link" target="_blank" rel="noopener noreferrer">TU Delft Robotics Institute</a>.
-            </p>
-            <p> Stichting IamMirte – Julianalaan 67, 2528 BC Delft – KVK: 90828658 – RSIN: 865467055</p>
-            <div class="language-selector">
-                <label for="language-selector">Language:</label>
-                <select id="language-selector">
+        <main class="content">
+            <div class="content-wrapper">
+                <section class="text-content">
+                    <h1 class="text-primary" v-html="translations[currentLanguage].title"></h1>
+                    <p class="text-secondary" v-html="translations[currentLanguage].paragraph1"></p>
+                    <br>
+                    <p class="text-secondary" v-html="translations[currentLanguage].paragraph2"></p>
+                    <br>
+                    <p class="text-secondary" v-html="translations[currentLanguage].paragraph3"></p>
+                    <br><br><br><br><br><br>
+                    <p class="text-secondary" v-html="translations[currentLanguage].contact"></p>
+                </section>
+                <div class="images-content">
+                    <img src="public/assets/images/mirte_drawing.png" alt="MIRTE Drawing" class="mirte-drawing">
+                    <img src="public/assets/images/lijn.png" alt="Decorative Background" class="background-image">
+                </div>
+            </div>
+        </main>
+
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>
+                    <a href="privacy.html" class="footer-link" v-html="translations[currentLanguage].footerPrivacy"></a>
+                    |
+                    <a href="disclaimer.html" class="footer-link"
+                        v-html="translations[currentLanguage].footerDisclaimer"></a>
+                </p>
+                <p v-html="translations[currentLanguage].footerDevelopedBy"></p>
+                <p v-html="translations[currentLanguage].footerAddress"></p>
+                <select id="language-selector" @change="switchLanguage">
                     <option value="en">English</option>
-                    <option value="nl">Dutch</option>
+                    <option value="nl">Nederlands</option>
                 </select>
             </div>
-        </div>
+    </div>
     </footer>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                currentLanguage: localStorage.getItem("selectedLanguage") || "en",
+                translations: {
+                    en: {
+                        home: 'Home',
+                        robots: 'Robots',
+                        gettingStarted: 'Getting Started',
+                        aboutUs: 'About Us',
+                        documentation: 'Documentation',
+                        iammirte: 'IamMirte',
+                        workshops: 'Workshops (NL)',
+                        contribute: 'Contribute',
+                        footerPrivacy: "Privacy",
+                        footerDisclaimer: "Disclaimer",
+                        footerDevelopedBy: "MIRTE is being developed by TU Delft Robotics Institute.",
+                        footerAddress: "Stichting IamMirte – Julianalaan 67, 2528 BC Delft – KVK: 90828658 – RSIN: 865467055",
+                        paragraph1: "The affordable and modular educational robot. Mirte is a robot developed for education. Robotics, due to its multidisciplinary nature, is a good entry point for teaching STEM education. That's why many robotics kits have already been developed. So why another one? We want to make robotics accessible to everyone, with affordability being one of the key principles. It also had to be a robot that you can continue to benefit from. That's why Mirte is designed to remain challenging and expandable from elementary school to university. Step by step to the next level in each discipline: hardware, electrical engineering, and software. Everything is in layers and the difficulty level is easy to build up.",
+                        paragraph2: "Read more about it in the <a href='https://iammirte.org/wp-content/uploads/2023/10/Mirte_iamMirte_presentatie.pdf' target='_blank' rel='noopener noreferrer'>downloadable brochure</a>.",
+                        paragraph3: "IamMirte makes Mirte even more inclusive. We do this by covering the entire chain with social enterprises. We're not there yet, but we've started with the social enterprises Printplezier, iamIT, and Fier fietskoeriers. We do this in close collaboration with TU Delft, which developed Mirte and supports us in this process.",
+                        contact: "For questions and/or comments, you can always contact us at <a href='mailto:info@iammirte.org'>info@iammirte.org</a>"
+                    },
+                    nl: {
+                        home: 'Home',
+                        robots: 'Robots',
+                        gettingStarted: 'Aan de slag',
+                        aboutUs: 'Over Ons',
+                        documentation: 'Documentatie',
+                        iammirte: 'IamMirte',
+                        workshops: 'Workshops (NL)',
+                        contribute: 'Meehelpen',
+                        footerPrivacy: "Privacy",
+                        footerDisclaimer: "Disclaimer",
+                        footerDevelopedBy: "MIRTE wordt ontwikkeld door het TU Delft Robotics Institute.",
+                        footerAddress: "Stichting IamMirte – Julianalaan 67, 2528 BC Delft – KVK: 90828658 – RSIN: 865467055",
+                        paragraph1: "De betaalbare en modulaire onderwijsrobot. Mirte is een robot ontwikkeld voor onderwijs. Vanwege de multidisciplinaire aard van robotica is het een goed startpunt voor het onderwijzen van STEM-onderwijs. Daarom zijn er al veel robotica-kits ontwikkeld. Maar waarom nog een? Wij willen robotica toegankelijk maken voor iedereen, waarbij betaalbaarheid een van de kernprincipes is. Het moet ook een robot zijn waarvan je blijvend kunt profiteren. Daarom is Mirte ontworpen om uitdagend en uitbreidbaar te blijven van de basisschool tot de universiteit. Stap voor stap naar het volgende niveau in elke discipline: hardware, elektrotechniek, en software. Alles is in lagen en het moeilijkheidsniveau is makkelijk op te bouwen.",
+                        paragraph2: "Lees meer hierover in de <a href='https://iammirte.org/wp-content/uploads/2023/10/Mirte_iamMirte_presentatie.pdf' target='_blank' rel='noopener noreferrer'>downloadbare brochure</a>.",
+                        paragraph3: "IamMirte maakt Mirte nog inclusiever. Dit doen we door de gehele keten te dekken met sociale ondernemingen. We zijn er nog niet, maar we zijn begonnen met de sociale ondernemingen Printplezier, iamIT, en Fier fietskoeriers. Dit doen we in nauwe samenwerking met de TU Delft, die Mirte heeft ontwikkeld en ons in dit proces ondersteunt.",
+                        contact: "Voor vragen en/of opmerkingen kunt u altijd contact met ons opnemen via <a href='mailto:info@iammirte.org'>info@iammirte.org</a>."
+                    }
+                }
+            },
+            watch: {
+                currentLanguage(newLanguage) {
+                    localStorage.setItem("selectedLanguage", newLanguage);
+                }
+            },
+            methods: {
+                switchLanguage() {
+                    this.currentLanguage = document.getElementById('language-selector').value;
+                }
+            }
+        });
+    </script>
 </body>
+
 </html>

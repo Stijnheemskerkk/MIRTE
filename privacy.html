@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,8 +14,9 @@
 
     <link rel="icon" href="public/assets/favicons/favicon.png">
     <title>MIRTE - Educational Robot</title>
-    
+
     <link rel="stylesheet" href="public/assets/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.min.js"></script>
     <style>
         body {
             margin: 0;
@@ -29,98 +31,209 @@
             padding: 20px;
             margin-bottom: 16vh;
         }
+
+        .footer #language-selector {
+            font-size: 1em;
+            border-radius: 2px;
+            position: absolute;
+            bottom: 8px;
+            right: 0;
+            border: black 1px solid;
+            color: rgb(89, 89, 89)
+        }
+
+        .select-container {
+            position: absolute;
+            bottom: 20px;
+            right: 0;
+        }
+
+        .select-container select {
+            font-size: 1em;
+            border-radius: 5px;
+        }
     </style>
 </head>
 
 <body class="h-100">
-    <header>
-        <div class="header-container">
-            <h1><a href="index.html" class="logo">MIRTE</a></h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html" class="nav-item active">Home</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-item dropdown-btn">Robots &#9660;</a>
-                        <div class="dropdown-content">
-                            <a href="mirte_light.html"><span class="mirte">MIRTE</span> Light</a>
-                            <a href="mirte_basic.html"><span class="mirte">MIRTE</span> Basic</a>
-                            <a href="mirte_pioneer.html"><span class="mirte">MIRTE</span> Pioneer</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-item dropdown-btn">Getting Started &#9660;</a>
-                        <div class="dropdown-content">
-                            <a href="iammirte.html">IamMirte</a>
-                            <a href="about-us.html">About Us</a>
-                            <a href="https://workshops.mirte.org/nl/" target="_blank" rel="noopener noreferrer">Workshops (NL)</a>
-                            <a href="https://docs.mirte.org" target="_blank">Documentation</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-item dropdown-btn">Contribute &#9660;</a>
-                        <div class="dropdown-content">
-                            <a href="https://github.com/mirte-robot" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div id="app">
+        <header>
+            <div class="header-container">
+                <h1><a href="index.html" class="logo">MIRTE</a></h1>
+                <nav>
+                    <ul>
+                        <li><a href="index.html" class="nav-item active"
+                                v-html="translations[currentLanguage].home"></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-item dropdown-btn"
+                                v-html="translations[currentLanguage].robots + ' &#9660;'"></a>
+                            <div class="dropdown-content">
+                                <a href="mirte_light.html"><span class="mirte">MIRTE</span> Light</a>
+                                <a href="mirte_basic.html"><span class="mirte">MIRTE</span> Basic</a>
+                                <a href="mirte_pioneer.html"><span class="mirte">MIRTE</span> Pioneer</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-item dropdown-btn"
+                                v-html="translations[currentLanguage].gettingStarted + ' &#9660;'"></a>
+                            <div class="dropdown-content">
+                                <a href="iammirte.html" v-html="translations[currentLanguage].iammirte"></a>
+                                <a href="about-us.html" v-html="translations[currentLanguage].aboutUs"></a>
+                                <a href="https://workshops.mirte.org/nl/"
+                                    v-html="translations[currentLanguage].workshops"></a>
+                                <a href="https://docs.mirte.org" target="_blank"
+                                    v-html="translations[currentLanguage].documentation"></a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-item dropdown-btn"
+                                v-html="translations[currentLanguage].contribute + ' &#9660;'"></a>
+                            <div class="dropdown-content">
+                                <a href="https://github.com/mirte-robot" target="_blank"
+                                    rel="noopener noreferrer">GitHub</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
-    <main>
-        <h1>Privacy Policy</h1>
-        <p>This privacy policy sets out how IAm Mirte uses and protects any information that you give IAm Mirte when you use this website.</p>
+        <main>
+            <h1 v-html="translations[currentLanguage].privacyPolicyTitle"></h1>
+            <p v-html="translations[currentLanguage].privacyPolicyIntro"></p>
 
-        <h2>What we collect</h2>
-        <p>We may collect the following information:</p>
-        <ul>
-            <li>Name and job title</li>
-            <li>Contact information including email address</li>
-            <li>Demographic information such as postcode, preferences, and interests</li>
-            <li>Other information relevant to customer surveys and/or offers</li>
-        </ul>
+            <h2 v-html="translations[currentLanguage].whatWeCollectTitle"></h2>
+            <p v-html="translations[currentLanguage].whatWeCollectDescription"></p>
+            <ul>
+                <li v-html="translations[currentLanguage].whatWeCollectItem1"></li>
+                <li v-html="translations[currentLanguage].whatWeCollectItem2"></li>
+                <li v-html="translations[currentLanguage].whatWeCollectItem3"></li>
+                <li v-html="translations[currentLanguage].whatWeCollectItem4"></li>
+            </ul>
 
-        <h2>What we do with the information we gather</h2>
-        <p>We require this information to understand your needs and provide you with a better service, and in particular for the following reasons:</p>
-        <ul>
-            <li>Internal record keeping.</li>
-            <li>We may use the information to improve our products and services.</li>
-            <li>We may periodically send promotional emails about new products, special offers or other information which we think you may find interesting using the email address which you have provided.</li>
-            <li>From time to time, we may also use your information to contact you for market research purposes. We may contact you by email, phone, fax or mail. We may use the information to customize the website according to your interests.</li>
-        </ul>
+            <h2 v-html="translations[currentLanguage].whatWeDoTitle"></h2>
+            <p v-html="translations[currentLanguage].whatWeDoDescription"></p>
+            <ul>
+                <li v-html="translations[currentLanguage].whatWeDoItem1"></li>
+                <li v-html="translations[currentLanguage].whatWeDoItem2"></li>
+                <li v-html="translations[currentLanguage].whatWeDoItem3"></li>
+                <li v-html="translations[currentLanguage].whatWeDoItem4"></li>
+            </ul>
 
-        <h2>Security</h2>
-        <p>We are committed to ensuring that your information is secure. In order to prevent unauthorized access or disclosure, we have put in place suitable physical, electronic, and managerial procedures to safeguard and secure the information we collect online.</p>
+            <h2 v-html="translations[currentLanguage].securityTitle"></h2>
+            <p v-html="translations[currentLanguage].securityDescription"></p>
 
-        <h2>Links to other websites</h2>
-        <p>Our website may contain links to other websites of interest. However, once you have used these links to leave our site, you should note that we do not have any control over that other website. Therefore, we cannot be responsible for the protection and privacy of any information which you provide whilst visiting such sites and such sites are not governed by this privacy statement. You should exercise caution and look at the privacy statement applicable to the website in question.</p>
+            <h2 v-html="translations[currentLanguage].linksTitle"></h2>
+            <p v-html="translations[currentLanguage].linksDescription"></p>
+        </main>
 
-        <h2>Controlling your personal information</h2>
-        <p>You may choose to restrict the collection or use of your personal information in the following ways:</p>
-        <ul>
-            <li>Whenever you are asked to fill in a form on the website, look for the box that you can click to indicate that you do not want the information to be used by anybody for direct marketing purposes</li>
-            <li>If you have previously agreed to us using your personal information for direct marketing purposes, you may change your mind at any time by writing to or emailing us at [Your Email Address]</li>
-        </ul>
-    </main>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <p>
-                <a href="privacy.html" class="footer-link">Privacy</a> |
-                <a href="disclaimer.html" class="footer-link">Disclaimer</a>
-            </p>
-            <p>
-                <span class="mirte">MIRTE</span> is being developed by <a href="https://tudelftroboticsinstitute.nl" class="tud-link" target="_blank" rel="noopener noreferrer">TU Delft Robotics Institute</a>.
-            </p>
-            <p> Stichting IamMirte – Julianalaan 67, 2528 BC Delft – KVK: 90828658 – RSIN: 865467055</p>
-            <div class="language-selector">
-                <label for="language-selector">Language:</label>
-                <select id="language-selector">
+        <footer class="footer">
+            <div class="footer-content">
+                <p>
+                    <a href="privacy.html" class="footer-link" v-html="translations[currentLanguage].footerPrivacy"></a>
+                    |
+                    <a href="disclaimer.html" class="footer-link"
+                        v-html="translations[currentLanguage].footerDisclaimer"></a>
+                </p>
+                <p v-html="translations[currentLanguage].footerDevelopedBy"></p>
+                <p v-html="translations[currentLanguage].footerAddress"></p>
+                <select id="language-selector" @change="switchLanguage">
                     <option value="en">English</option>
-                    <option value="nl">Dutch</option>
+                    <option value="nl">Nederlands</option>
                 </select>
             </div>
-        </div>
+    </div>
     </footer>
+    </div>
+
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                currentLanguage: localStorage.getItem("selectedLanguage") || "en",
+                translations: {
+                    en: {
+                        home: 'Home',
+                        robots: 'Robots',
+                        gettingStarted: 'Getting Started',
+                        aboutUs: 'About Us',
+                        documentation: 'Documentation',
+                        iammirte: 'IAmMirte',
+                        workshops: 'Workshops (NL)',
+                        contribute: 'Contribute',
+                        footerPrivacy: 'Privacy',
+                        footerDisclaimer: 'Disclaimer',
+                        footerDevelopedBy: 'MIRTE is being developed by TU Delft Robotics Institute.',
+                        footerAddress: 'Stichting IamMirte – Julianalaan 67, 2528 BC Delft – KVK: 90828658 – RSIN: 865467055',
+                        privacyPolicyTitle: "Privacy Policy",
+                        privacyPolicyIntro: "This privacy policy sets out how IAm Mirte uses and protects any information that you give IAm Mirte when you use this website.",
+                        whatWeCollectTitle: "What We Collect",
+                        whatWeCollectDescription: "We may collect the following information:",
+                        whatWeCollectItem1: "Name and job title",
+                        whatWeCollectItem2: "Contact information including email address",
+                        whatWeCollectItem3: "Demographic information such as postcode, preferences, and interests",
+                        whatWeCollectItem4: "Other information relevant to customer surveys and/or offers",
+                        whatWeDoTitle: "What We Do with the Information We Gather",
+                        whatWeDoDescription: "We require this information to understand your needs and provide you with a better service, and in particular for the following reasons:",
+                        whatWeDoItem1: "Internal record keeping.",
+                        whatWeDoItem2: "We may use the information to improve our products and services.",
+                        whatWeDoItem3: "We may periodically send promotional emails about new products, special offers or other information which we think you may find interesting using the email address which you have provided.",
+                        whatWeDoItem4: "From time to time, we may also use your information to contact you for market research purposes. We may contact you by email, phone, fax or mail. We may use the information to customize the website according to your interests.",
+                        securityTitle: "Security",
+                        securityDescription: "We are committed to ensuring that your information is secure. In order to prevent unauthorized access or disclosure, we have put in place suitable physical, electronic, and managerial procedures to safeguard and secure the information we collect online.",
+                        linksTitle: "Links to Other Websites",
+                        linksDescription: "Our website may contain links to other websites of interest. However, once you have used these links to leave our site, you should note that we do not have any control over that other website. Therefore, we cannot be responsible for the protection and privacy of any information which you provide whilst visiting such sites and such sites are not governed by this privacy statement. You should exercise caution and look at the privacy statement applicable to the website in question."
+                    },
+                    nl: {
+                        home: 'Home',
+                        robots: 'Robots',
+                        gettingStarted: 'Getting Started',
+                        aboutUs: 'About Us',
+                        documentation: 'Documentation',
+                        iammirte: 'IAmMirte',
+                        workshops: 'Workshops (NL)',
+                        contribute: 'Contribute',
+                        footerPrivacy: 'Privacy',
+                        footerDisclaimer: 'Disclaimer',
+                        footerDevelopedBy: 'MIRTE wordt ontwikkeld door het TU Delft Robotics Institute.',
+                        footerAddress: 'Stichting IamMirte – Julianalaan 67, 2528 BC Delft – KVK: 90828658 – RSIN: 865467055',
+                        privacyPolicyTitle: "Privacybeleid",
+                        privacyPolicyIntro: "Dit privacybeleid beschrijft hoe IAm Mirte informatie gebruikt en beschermt die u verstrekt wanneer u deze website gebruikt.",
+                        whatWeCollectTitle: "Welke informatie verzamelen we",
+                        whatWeCollectDescription: "We kunnen de volgende informatie verzamelen:",
+                        whatWeCollectItem1: "Naam en functie",
+                        whatWeCollectItem2: "Contactgegevens inclusief e-mailadres",
+                        whatWeCollectItem3: "Demografische informatie zoals postcode, voorkeuren en interesses",
+                        whatWeCollectItem4: "Andere informatie die relevant is voor klantenonderzoeken en/of aanbiedingen",
+                        whatWeDoTitle: "Wat doen we met de informatie die we verzamelen",
+                        whatWeDoDescription: "We hebben deze informatie nodig om uw behoeften te begrijpen en u een betere service te bieden, en met name om de volgende redenen:",
+                        whatWeDoItem1: "Interne administratie.",
+                        whatWeDoItem2: "We kunnen de informatie gebruiken om onze producten en diensten te verbeteren.",
+                        whatWeDoItem3: "We kunnen periodiek promotionele e-mails sturen over nieuwe producten, speciale aanbiedingen of andere informatie waarvan we denken dat u deze interessant vindt, met behulp van het e-mailadres dat u heeft verstrekt.",
+                        whatWeDoItem4: "Af en toe kunnen we uw informatie ook gebruiken om contact met u op te nemen voor marktonderzoek. We kunnen contact met u opnemen via e-mail, telefoon, fax of post. We kunnen de informatie gebruiken om de website aan te passen aan uw interesses.",
+                        securityTitle: "Beveiliging",
+                        securityDescription: "We zijn toegewijd aan het beschermen van uw informatie. Om ongeautoriseerde toegang of openbaarmaking te voorkomen, hebben we passende fysieke, elektronische en bestuurlijke procedures ingesteld om de informatie die we online verzamelen te beschermen en beveiligen.",
+                        linksTitle: "Links naar andere websites",
+                        linksDescription: "Onze website kan links bevatten naar andere websites van belang. We hebben echter geen controle over die andere website zodra u deze links gebruikt om onze site te verlaten. Daarom kunnen we niet verantwoordelijk worden gehouden voor de bescherming en privacy van alle informatie die u verstrekt tijdens uw bezoek aan dergelijke sites, en dergelijke sites vallen niet onder dit privacybeleid. Wees voorzichtig en bekijk het privacybeleid dat van toepassing is op de betreffende website."
+                    }
+                }
+            },
+            watch: {
+                currentLanguage(newLanguage) {
+                    localStorage.setItem("selectedLanguage", newLanguage);
+                }
+            },
+            methods: {
+                switchLanguage() {
+                    this.currentLanguage = document.getElementById('language-selector').value;
+                }
+            },
+            mounted() {
+                this.currentLanguage = document.getElementById('language-selector').value;
+            }
+        });
+    </script>
 </body>
+
 </html>
