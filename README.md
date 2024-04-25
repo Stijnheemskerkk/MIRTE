@@ -6,7 +6,7 @@ Dit project is ontwikkeld als onderdeel van de Hackathon 2024.
 
 ### Over het Project
 
-De IamMirte project website is geprogrammeerd voor het TU Delft Robotics Institute. Dit specifieke project is geprogrammeerd door Software Developer studenten van het mboRijnland. Het doel van dit project is om met behulp van de MIRTE robot (www.mirte.org) zoveel mogelijk jongeren te enthousiasmeren voor wetenschap en techniek. De ontwikkeling van de robot en het bijbehorende lesmateriaal wordt volledig verzorgd door de TU Delft en is open source. Om dit initiatief toegankelijker te maken voor docenten, verkoopt de non-profitorganisatie IamMirte de robots als pakketten, waarbij gestreefd wordt naar een inclusieve keten van toeleveranciers. De winst die hieruit voortkomt, wordt geïnvesteerd in workshops voor scholen in kansarme wijken.
+De IamMirte project website is geprogrammeerd voor het TU Delft Robotics Institute. Dit specifieke project is geprogrammeerd door Software Development studenten van het mboRijnland. Het doel van dit project is om met behulp van de MIRTE robot (www.mirte.org) zoveel mogelijk jongeren te enthousiasmeren voor wetenschap en techniek. De ontwikkeling van de robot en het bijbehorende lesmateriaal wordt volledig verzorgd door de TU Delft en is open source. Om dit initiatief toegankelijker te maken voor docenten, verkoopt de non-profitorganisatie IamMirte de robots als pakketten, waarbij gestreefd wordt naar een inclusieve keten van toeleveranciers. De winst die hieruit voortkomt, wordt geïnvesteerd in workshops voor scholen in kansarme wijken.
 
 Momenteel is het echter nog niet mogelijk om bestellingen via de website te plaatsen, wat wel de wens is. Dit zou het bestellen van de robot laagdrempeliger maken.
 
@@ -18,11 +18,11 @@ De website zal voornamelijk bezocht worden door docenten van basis- en middelbar
 
 Dit project is een gezamenlijk initiatief van Team Blauw, groep 8. Het team bestaat uit:
 
-- Stijn Heemskerk (lead developer, software developer student en scrum master)
-- Joep de Nooijer (software developer student)
-- Giovanni Krapels (software developer student)
-- Abdel Ahmed (software developer student)
-- Quinten Does (software developer student)
+- [Stijn Heemskerk](https://github.com/Stijnheemskerkk) (lead developer, software developer student en scrum master)
+- [Joep de Nooijer](https://github.com/Joepdenooijermbo) (software developer student)
+- [Giovanni Krapels](https://github.com/GiovanniKrapels) (software developer student)
+- [Abdel Ahmed](https://github.com/AbdelAhmed33) (software developer student)
+- [Quinten Does](https://github.com/quintendoes) (software developer student)
 
 ### Technologieën
 
@@ -39,4 +39,17 @@ Een uitdaging van dit project is de wens om het te ontwikkelen in Vue.js, met da
 ### Materialen
 
 Hoewel er al een website is met basisinformatie (www.iammirte.org), is het doel om deze te vervangen. De huidige website is echter gebouwd met WordPress en is daarom niet geschikt als startpunt voor dit project.
-=======
+
+### Links
+
+- [Scrumboard](https://github.com/users/Stijnheemskerkk/projects/4/views/1)
+- [Project](https://github.com/Stijnheemskerkk/MIRTE)
+- [Roadmap](https://github.com/users/Stijnheemskerkk/projects/4/views/4)
+
+### Taakverdeling
+
+- Stijn Heemskerk: al het programmeren, maken van scrumboard en deels updaten scrumboard
+- Joep de Nooijer: scrumboard continu bijwerken, research doen, plan van aanpak maken
+- Giovanni Krapels: visual design & research
+- Abdel Ahmed: visual design & research
+- Quinten Does: visual design & research
