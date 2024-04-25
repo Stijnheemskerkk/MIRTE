@@ -6,7 +6,7 @@ Dit project is ontwikkeld als onderdeel van de Hackathon 2024.
 
 ### Over het Project
 
-De IamMirte project website is geprogrammeerd voor het TU Delft Robotics Institute. Het doel van dit project is om met behulp van de MIRTE robot (www.mirte.org) zoveel mogelijk jongeren te enthousiasmeren voor wetenschap en techniek. De ontwikkeling van de robot en het bijbehorende lesmateriaal wordt volledig verzorgd door de TU Delft en is open source. Om dit initiatief toegankelijker te maken voor docenten, verkoopt de non-profitorganisatie IamMirte de robots als pakketten, waarbij gestreefd wordt naar een inclusieve keten van toeleveranciers. De winst die hieruit voortkomt, wordt geïnvesteerd in workshops voor scholen in kansarme wijken.
+De IamMirte project website is geprogrammeerd voor het TU Delft Robotics Institute. Dit specifieke project is geprogrammeerd door Software Developer studenten van het mboRijnland. Het doel van dit project is om met behulp van de MIRTE robot (www.mirte.org) zoveel mogelijk jongeren te enthousiasmeren voor wetenschap en techniek. De ontwikkeling van de robot en het bijbehorende lesmateriaal wordt volledig verzorgd door de TU Delft en is open source. Om dit initiatief toegankelijker te maken voor docenten, verkoopt de non-profitorganisatie IamMirte de robots als pakketten, waarbij gestreefd wordt naar een inclusieve keten van toeleveranciers. De winst die hieruit voortkomt, wordt geïnvesteerd in workshops voor scholen in kansarme wijken.
 
 Momenteel is het echter nog niet mogelijk om bestellingen via de website te plaatsen, wat wel de wens is. Dit zou het bestellen van de robot laagdrempeliger maken.
 
